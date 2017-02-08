@@ -16,15 +16,19 @@
 let submitBtn = document.getElementById("submit");
 let argumentBox = document.getElementById("argument");
 let resultArea = document.getElementById("result");
+let resultArray = []
 
 submitBtn.addEventListener('click', e =>{
 	let inputArray =  formatInput(argumentBox.value)
-	let resultArray = []
 	inputArray.forEach(argument =>{
-		console.log(fizzBuzz(argument))
+		if(fizzBuzz(argument)){
+			validateEmail(argument)
+		}
 	})
-	
+	console.log(resultArray)
+	resultArea.innerText = resultArray
 })
+
 let formatInput = input =>{
  return input.replace(/\[/g, '')
  .replace(/\]/g, '')
@@ -32,22 +36,29 @@ let formatInput = input =>{
  .replace(/[' ']/g, '')
  .split(',')
 }
+
+let validateEmail = input =>{
+	let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+	if(regex.test(input)) resultArray.push('email')
+	else resultArray.push(input)
+}
+
 let fizzBuzz = argument =>{
 	let number = parseInt(argument)
 	if(isNaN(number)){
 		return argument
 	}
-	else if(number ===0) return number
+	else if(number ===0) resultArray.push(0)
 	else if(number%3 === 0 && number %5 ===0){
-		return "fizzbuzz"
+		resultArray.push("fizzbuzz")
 	}
 	else if(number%3 === 0){
-		return "fizz"
+		resultArray.push("fizz")
 	}
 	else if(number%5 === 0){
-		return "buzz"
+		resultArray.push("buzz")
 	}
-	else return number
+	else resultArray.push(number)
 }
 
 </script>
