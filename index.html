@@ -18,9 +18,17 @@ let argument = document.getElementById("argument");
 let resultArea = document.getElementById("result");
 
 submitBtn.addEventListener('click', e =>{
-	console.log(argument.value)
-	resultArea.innerText = argument.value
+	let resultArray =  formatInput(argument.value)
+	console.log(resultArray)
+	
 })
+let formatInput= input =>{
+ return input.replace(/\[/g, '')
+ .replace(/\]/g, '')
+ .replace(/['"']/g,'')
+ .replace(/[' ']/g, '')
+ .split(',')
+}
 
 </script>
 </html>
