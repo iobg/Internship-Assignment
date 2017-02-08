@@ -19,14 +19,26 @@ let resultArea = document.getElementById("result");
 let resultArray = []
 
 submitBtn.addEventListener('click', e =>{
-	let inputArray =  formatInput(argumentBox.value)
-	inputArray.forEach(argument =>{
-		if(fizzBuzz(argument)){
-			validateEmail(argument)
-		}
-	})
-	console.log(resultArray)
-	resultArea.innerText = resultArray
+	if(argumentBox.value.charAt(0) === '[' 
+		&& argumentBox.value.charAt(argumentBox.value.length-1) ===']'){
+
+		let inputArray =  formatInput(argumentBox.value)
+		resultArray = []
+
+		inputArray.forEach(argument =>{
+			if(fizzBuzz(argument)){
+				validateEmail(argument)
+			}
+		})
+
+		console.log(resultArray)
+		resultArea.innerText = resultArray
+	}
+	else{
+		console.log("Enter a valid array")
+		resultArea.innerText = "Enter a valid array"
+	}
+	
 })
 
 let formatInput = input =>{
@@ -49,6 +61,7 @@ let fizzBuzz = argument =>{
 		return argument
 	}
 	else if(number ===0) resultArray.push(0)
+
 	else if(number%3 === 0 && number %5 ===0){
 		resultArray.push("fizzbuzz")
 	}
