@@ -14,20 +14,40 @@
 
 <script>
 let submitBtn = document.getElementById("submit");
-let argument = document.getElementById("argument");
+let argumentBox = document.getElementById("argument");
 let resultArea = document.getElementById("result");
 
 submitBtn.addEventListener('click', e =>{
-	let resultArray =  formatInput(argument.value)
-	console.log(resultArray)
+	let inputArray =  formatInput(argumentBox.value)
+	let resultArray = []
+	inputArray.forEach(argument =>{
+		console.log(fizzBuzz(argument))
+	})
 	
 })
-let formatInput= input =>{
+let formatInput = input =>{
  return input.replace(/\[/g, '')
  .replace(/\]/g, '')
  .replace(/['"']/g,'')
  .replace(/[' ']/g, '')
  .split(',')
+}
+let fizzBuzz = argument =>{
+	let number = parseInt(argument)
+	if(isNaN(number)){
+		return argument
+	}
+	else if(number ===0) return number
+	else if(number%3 === 0 && number %5 ===0){
+		return "fizzbuzz"
+	}
+	else if(number%3 === 0){
+		return "fizz"
+	}
+	else if(number%5 === 0){
+		return "buzz"
+	}
+	else return number
 }
 
 </script>
