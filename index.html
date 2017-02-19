@@ -43,7 +43,7 @@ submitBtn.addEventListener('click', e =>{
 
 let formatInput = input =>{
  return input.replace(/\[/g, '')
- .replace(/^\]/g, '')
+ .replace(/\]/g, '')
  .replace(/^['"']/g,'')
  .replace(/^[' ']/g, '')
  .split(',')
